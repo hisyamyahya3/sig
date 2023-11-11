@@ -107,13 +107,31 @@
             </div>
         </div>
     </div>
-    <!-- <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script> -->
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <script>
+        let button = 's';
+        $("#satelite").click(function() {
+            handleClick("s");
+        });
+
+        $("#hybrid").click(function() {
+            handleClick("s,h");
+        });
+
+        $("#street").click(function() {
+            handleClick("m");
+        });
+
+        // Function to handle button click
+        function handleClick(value) {
+            button = value;
+            L.tileLayer(`http://{s}.google.com/vt/lyrs=${button}&x={x}&y={y}&z={z}`,{maxZoom: 20, subdomains:['mt0','mt1','mt2','mt3']}).addTo(hasilpeta);
+        }
+
         // let hasilpeta;
         let hasilpeta = L.map('petaku').setView([-7.520295197871834, 112.2323087686914], 19);
-        L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',{maxZoom: 20, subdomains:['mt0','mt1','mt2','mt3']}).addTo(hasilpeta);
-        // L.tileLayer(`http://{s}.google.com/vt/lyrs=` + ${tombol} + `&x={x}&y={y}&z={z}`,{maxZoom: 20, subdomains:['mt0','mt1','mt2','mt3']}).addTo(hasilpeta);
-        // L.tileLayer(`http://{s}.google.com/vt/lyrs=${tombol}&x={x}&y={y}&z={z}`,{maxZoom: 20, subdomains:['mt0','mt1','mt2','mt3']}).addTo(hasilpeta);
+        // L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',{maxZoom: 20, subdomains:['mt0','mt1','mt2','mt3']}).addTo(hasilpeta);
+        L.tileLayer(`http://{s}.google.com/vt/lyrs=${button}&x={x}&y={y}&z={z}`,{maxZoom: 20, subdomains:['mt0','mt1','mt2','mt3']}).addTo(hasilpeta);
 
         $.ajax({
 			type: "GET",
